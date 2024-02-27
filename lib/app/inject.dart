@@ -2,6 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:onyx_test/app/service/login.dart';
+import 'package:onyx_test/app/service/offline/databse/db.dart';
+import 'package:onyx_test/app/service/offline/onyx.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,6 +21,13 @@ Future<void> inject() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+
+  /// * Offline Database
+  final db = await DatabaseServices.boot();
+
+  Get.put(db);
+  Get.put(DatabaseServices(), permanent: true);
+  Get.put(OnyxOfflineService(db), permanent: true);
 
   /// * Online Database
   final dio = Dio(
@@ -40,4 +50,5 @@ Future<void> inject() async {
   Get.put(DioWrapper(dio), permanent: true);
 
   /// * Services
+  Get.put(LoginService());
 }

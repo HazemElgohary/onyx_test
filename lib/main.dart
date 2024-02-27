@@ -18,7 +18,7 @@ Future<void> main() async {
   await inject();
   runApp(
     DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (BuildContext context) => GetMaterialApp(
         title: "Onyx",
         scrollBehavior: const MaterialScrollBehavior().copyWith(
@@ -29,7 +29,7 @@ Future<void> main() async {
         ),
         locale: Locale(
             Prefs.getString(PrefsKeys.lang).isEmpty ? 'en' : Prefs.getString(PrefsKeys.lang)),
-        initialRoute: Prefs.getString(PrefsKeys.token).isNotEmpty ? Routes.HOME : AppPages.INITIAL,
+        initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
         debugShowCheckedModeBanner: false,
         useInheritedMediaQuery: true,

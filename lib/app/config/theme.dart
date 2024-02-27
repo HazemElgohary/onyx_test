@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppColors {
-  static Color primary = const Color(0xFF774281);
-  static Color buttonColor = const Color(0XFF8EB652);
-  static Color secondColor = const Color(0xFF5F676B);
+  static Color primary = const Color(0xFF024f62);
+  static Color secondColor = const Color(0xFFf1f5fc);
 
   static Color whiteColor = Colors.white;
   static Color blackColor = Colors.black;
@@ -50,7 +49,7 @@ ThemeData buildTheme(BuildContext context) {
     radioTheme: RadioThemeData(fillColor: MaterialStateColor.resolveWith((states) => Colors.black)),
     indicatorColor: AppColors.primary,
     progressIndicatorTheme: ProgressIndicatorThemeData(
-      color: AppColors.primary,
+      color: AppColors.whiteColor,
     ),
     listTileTheme: const ListTileThemeData(
       contentPadding: EdgeInsets.zero,

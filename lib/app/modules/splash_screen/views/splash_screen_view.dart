@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
+import 'package:onyx_test/generated/assets.dart';
 
 import '../controllers/splash_screen_controller.dart';
 
 class SplashScreenView extends GetView<SplashScreenController> {
-  const SplashScreenView({Key? key}) : super(key: key);
+  SplashScreenView({Key? key}) : super(key: key);
+
+  @override
+  final controller = Get.put(SplashScreenController());
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashScreenView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'SplashScreenView is working',
-          style: TextStyle(fontSize: 20),
+      body: SizedBox(
+        height: size.height,
+        width: size.width,
+        child: SvgPicture.asset(
+          Asset.images.svg.splash,
+          fit: BoxFit.fill,
         ),
       ),
     );

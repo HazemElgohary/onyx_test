@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:onyx_test/app/routes/app_pages.dart';
 
 import 'keys.dart';
 import 'prefs.dart';
@@ -20,7 +20,7 @@ class DioWrapper {
       final lang = Prefs.getString(PrefsKeys.lang);
       Prefs.clear();
       Prefs.setString(PrefsKeys.lang, lang);
-      // Get.offAllNamed(Routes.SIGN_IN_SCREEN);
+      Get.offAllNamed(Routes.LOGIN_SCREEN);
     }
     // else if (res.data == null) {
     //   throw 'api returned null response';
@@ -40,8 +40,7 @@ class DioWrapper {
           options: Options(headers: {
             // 'Content-Type': 'application/json',
             'Accept': 'application/json',
-            if (Prefs.getString(PrefsKeys.token).isNotEmpty)
-              HttpHeaders.authorizationHeader: 'Bearer ${Prefs.getString(PrefsKeys.token)}',
+
             ...headers,
           }),
           onReceiveProgress: (ds, sd) {});
@@ -76,8 +75,7 @@ class DioWrapper {
           headers: {
             // 'Content-Type': 'application/json',
             'Accept': 'application/json',
-            if (Prefs.getString(PrefsKeys.token).isNotEmpty)
-              HttpHeaders.authorizationHeader: 'Bearer ${Prefs.getString(PrefsKeys.token)}',
+
             ...headers,
           },
           contentType: contentType,
@@ -117,8 +115,6 @@ class DioWrapper {
         options: Options(headers: {
           // 'Content-Type': 'application/json',
           'Accept': 'application/json',
-          if (Prefs.getString(PrefsKeys.token).isNotEmpty)
-            HttpHeaders.authorizationHeader: 'Bearer ${Prefs.getString(PrefsKeys.token)}',
           ...headers,
         }),
       );
@@ -152,8 +148,7 @@ class DioWrapper {
           headers: {
             // 'Content-Type': 'application/json',
             'Accept': 'application/json',
-            if (Prefs.getString(PrefsKeys.token).isNotEmpty)
-              HttpHeaders.authorizationHeader: 'Bearer ${Prefs.getString(PrefsKeys.token)}',
+
             ...headers,
           },
         ),

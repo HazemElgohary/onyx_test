@@ -1,23 +1,45 @@
+import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:onyx_test/app/helpers/api.dart';
+import 'package:onyx_test/app/helpers/keys.dart';
+import 'package:onyx_test/app/helpers/prefs.dart';
+import 'package:onyx_test/app/routes/app_pages.dart';
+import 'package:onyx_test/app/service/login.dart';
 
 class LoginScreenController extends GetxController {
-  //TODO: Implement LoginScreenController
+  final service = Get.find<LoginService>();
+  final loading = false.obs;
+  final userId = TextEditingController();
+  final password = TextEditingController();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  Future<void> login() async {
+    try {
+      loading.value = true;
+      await service.login(
+        id: userId.text,
+        password: password.text,
+      );
+      Get.offAllNamed(Routes.HOME);
+    } catch (e, st) {
+      log(e.toString());
+      log(st.toString());
+      Get.snackbar('error', e.toString());
+    } finally {
+      loading.value = false;
+    }
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  Future<void> updateLang() async {
+    try {
+      // final en = Prefs.getString(PrefsKeys.lang) == 'en';
+      //
+      // await Prefs.setString(PrefsKeys.lang, en ? 'ar' : 'en');
+      // await Get.updateLocale(Locale(en ? 'ar' : 'en'));
+    } catch (e, st) {
+      log(e.toString());
+      log(st.toString());
+    }
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
