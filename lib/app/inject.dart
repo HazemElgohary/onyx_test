@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:onyx_test/app/service/login.dart';
+import 'package:onyx_test/app/service/online/login.dart';
 import 'package:onyx_test/app/service/offline/databse/db.dart';
 import 'package:onyx_test/app/service/offline/onyx.dart';
 
@@ -13,6 +13,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'helpers/api.dart';
 import 'helpers/end_points.dart';
+import 'service/online/bill.dart';
 
 Future<void> inject() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,4 +52,5 @@ Future<void> inject() async {
 
   /// * Services
   Get.put(LoginService());
+  Get.put(BillService());
 }

@@ -6,10 +6,12 @@ import 'package:onyx_test/app/helpers/api.dart';
 import 'package:onyx_test/app/helpers/keys.dart';
 import 'package:onyx_test/app/helpers/prefs.dart';
 import 'package:onyx_test/app/routes/app_pages.dart';
-import 'package:onyx_test/app/service/login.dart';
+import 'package:onyx_test/app/service/online/bill.dart';
+import 'package:onyx_test/app/service/online/login.dart';
 
 class LoginScreenController extends GetxController {
   final service = Get.find<LoginService>();
+  final billService = Get.find<BillService>();
   final loading = false.obs;
   final userId = TextEditingController();
   final password = TextEditingController();
@@ -21,6 +23,7 @@ class LoginScreenController extends GetxController {
         id: userId.text,
         password: password.text,
       );
+      await billService.getBills(userId: userId.text);
       Get.offAllNamed(Routes.HOME);
     } catch (e, st) {
       log(e.toString());

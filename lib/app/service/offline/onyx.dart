@@ -5,27 +5,27 @@ import 'package:sqflite/sqflite.dart';
 
 import 'databse/database_services.dart';
 
-class OnyxOfflineService extends BaseTableService<DeliveryBills> {
-  OnyxOfflineService(Database db) : super(db, DeliveryBills.databaseName);
+class OnyxOfflineService extends BaseTableService<DeliveryBillsModel> {
+  OnyxOfflineService(Database db) : super(db, DeliveryBillsModel.databaseName);
 
   Future<void> addOnyxDelivery({
-    required DeliveryBills bills,
+    required DeliveryBillsModel bills,
   }) async {
     await db.insert(
       name,
-      bills.toJson(),
+      bills.toMap(),
     );
 
     log('Added New $name');
   }
 
   @override
-  Future<List<DeliveryBills>> findManyFromDb([String keyword = '']) async {
+  Future<List<DeliveryBillsModel>> findManyFromDb([String keyword = '']) async {
     final res = await db.query(name);
-    return res.map((e) => DeliveryBills.fromSql(e)).toList();
+    return res.map((e) => DeliveryBillsModel.fromJson(e)).toList();
   }
 
-  Future<List<DeliveryBills>> findNewOrders() async {
+  Future<List<DeliveryBillsModel>> findNewOrders() async {
     final res = await db.query(
       name,
       where: 'dlvryStatusFlg = ?',
@@ -33,7 +33,7 @@ class OnyxOfflineService extends BaseTableService<DeliveryBills> {
     );
     return res
         .map(
-          (e) => DeliveryBills.fromSql(e),
+          (e) => DeliveryBillsModel.fromJson(e),
         )
         .toList();
   }

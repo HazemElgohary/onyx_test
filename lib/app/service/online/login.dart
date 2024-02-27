@@ -24,5 +24,9 @@ class LoginService {
     }
 
     Prefs.setString(PrefsKeys.userName, res.data['Data']['DeliveryName']);
+    Prefs.setString(
+      PrefsKeys.userId,
+      id,
+    );
   }
 }

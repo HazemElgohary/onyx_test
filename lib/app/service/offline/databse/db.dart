@@ -16,7 +16,7 @@ class DatabaseServices {
         // will store the database inside the project directory
         Directory.current.path,
         // database file name
-        'Onyx1.db',
+        'Onyx_1.db',
       );
     } else {
       final dbPath = await getDatabasesPath();
@@ -24,7 +24,7 @@ class DatabaseServices {
         // will store the database inside the project directory
         dbPath,
         // database file name
-        'Onyx1.db',
+        'Onyx_1.db',
       );
     }
   }
@@ -56,7 +56,7 @@ class DatabaseServices {
   }
 
   static Future<void> onCreate(Database db, int version) async {
-    await db.execute(DeliveryBills.createStatement);
+    await db.execute(DeliveryBillsModel.createStatement);
     log('all tables has been created 👍');
   }
 
@@ -73,7 +73,7 @@ class DatabaseServices {
   Future<void> clear() async {
     final db = Get.find<Database>();
     final tables = <String>[
-      DeliveryBills.databaseName,
+      DeliveryBillsModel.databaseName,
     ];
     await db.transaction(
       (txn) async {
