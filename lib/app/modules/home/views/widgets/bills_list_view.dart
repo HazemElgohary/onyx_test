@@ -9,6 +9,7 @@ class BillsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      padding: const EdgeInsets.only(bottom: 30),
       itemBuilder: (context, index) => BillItem(bill: bills[index]),
       separatorBuilder: (context, index) => const SizedBox(height: 20),
       itemCount: bills.length,

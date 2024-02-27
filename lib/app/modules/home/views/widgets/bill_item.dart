@@ -36,10 +36,12 @@ class BillItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  '#${bill.billNo}',
+                  '#${bill.billSRL}',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontSize: 15,
-                    color: Color(0XFFebebeb),
+                    color: Colors.grey,
                   ),
                 ),
                 Row(
@@ -134,7 +136,7 @@ class BillItemField extends StatelessWidget {
           title,
           style: const TextStyle(
             fontSize: 15,
-            color: Color(0XFFebebeb),
+            color: Colors.grey,
           ),
         ),
         const SizedBox(height: 10),

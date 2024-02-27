@@ -16,7 +16,7 @@ class DatabaseServices {
         // will store the database inside the project directory
         Directory.current.path,
         // database file name
-        'Onyx_1.db',
+        'Onyx_2.db',
       );
     } else {
       final dbPath = await getDatabasesPath();
@@ -24,7 +24,7 @@ class DatabaseServices {
         // will store the database inside the project directory
         dbPath,
         // database file name
-        'Onyx_1.db',
+        'Onyx_2.db',
       );
     }
   }

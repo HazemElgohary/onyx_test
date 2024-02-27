@@ -66,31 +66,28 @@ class HomeView extends GetView<HomeController> {
             height: 25,
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
-              child: TabBarView(
-                controller: controller.tabController,
-                children: [
-                  Obx(
-                    () => controller.newBills.isEmpty
-                        ? Center(
-                            child: Text('There is No Bills'),
-                          )
-                        : BillsListView(
-                            bills: controller.newBills,
-                          ),
-                  ),
-                  Obx(
-                    () => controller.othersBills.isEmpty
-                        ? Center(
-                            child: Text('There is No Bills'),
-                          )
-                        : BillsListView(
-                            bills: controller.othersBills,
-                          ),
-                  ),
-                ],
-              ),
+            child: TabBarView(
+              controller: controller.tabController,
+              children: [
+                Obx(
+                  () => controller.newBills.isEmpty
+                      ? Center(
+                          child: Text('There is No Bills'),
+                        )
+                      : BillsListView(
+                          bills: controller.newBills,
+                        ),
+                ),
+                Obx(
+                  () => controller.othersBills.isEmpty
+                      ? Center(
+                          child: Text('There is No Bills'),
+                        )
+                      : BillsListView(
+                          bills: controller.othersBills,
+                        ),
+                ),
+              ],
             ),
           ),
         ],

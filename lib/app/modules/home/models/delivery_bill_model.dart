@@ -6,6 +6,7 @@ class DeliveryBillsModel extends Equatable {
   static const databaseName = 'bill_table';
   final String billDate;
   final String billNo;
+  final String billSRL;
   final String billAMT;
   final String deliveryStatusFlg;
   final BillStatus status;
@@ -13,6 +14,7 @@ class DeliveryBillsModel extends Equatable {
   const DeliveryBillsModel({
     required this.billDate,
     required this.billNo,
+    required this.billSRL,
     required this.billAMT,
     required this.deliveryStatusFlg,
     required this.status,
@@ -22,6 +24,7 @@ class DeliveryBillsModel extends Equatable {
     return DeliveryBillsModel(
       billDate: json["BILL_DATE"],
       billNo: json["BILL_NO"],
+      billSRL: json["BILL_SRL"],
       billAMT: json["BILL_AMT"],
       deliveryStatusFlg: json["DLVRY_STATUS_FLG"],
       status: (json["DLVRY_STATUS_FLG"] as String).toBillStatus(),
@@ -33,6 +36,7 @@ class DeliveryBillsModel extends Equatable {
       "BILL_AMT": billAMT,
       "BILL_DATE": billDate,
       "BILL_NO": billNo,
+      "BILL_SRL": billSRL,
       "DLVRY_STATUS_FLG": deliveryStatusFlg,
     };
   }
@@ -49,6 +53,7 @@ class DeliveryBillsModel extends Equatable {
                       "BILL_AMT"	VARCHAR,
                       "BILL_DATE"	VARCHAR,
                       "BILL_NO"	VARCHAR,
+                      "BILL_SRL"	VARCHAR,
                       "DLVRY_STATUS_FLG"	VARCHAR
                       );""";
 }
